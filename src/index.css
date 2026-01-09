@@ -1,0 +1,438 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+  background: #0F0F1A;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #0F0F1A;
+  color: #F1F5F9;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.font-heading {
+  font-family: 'Sora', sans-serif;
+}
+
+html, body {
+  cursor: none;
+  scroll-behavior: smooth;
+  background: #0F0F1A;
+  color: #F1F5F9;
+}
+
+/* Times New Roman Font */
+.font-times {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Enhanced Fog Animations */
+@keyframes fogDrift1 {
+  0% {
+    transform: translateX(-10%) translateY(-5%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(10%) translateY(5%) scale(1.1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(-10%) translateY(-5%) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes fogDrift2 {
+  0% {
+    transform: translateX(5%) translateY(-10%) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(-5%) translateY(10%) scale(1.05);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(5%) translateY(-10%) scale(1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes fogPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-fog1 {
+  animation: fogDrift1 8s ease-in-out infinite;
+}
+
+.animate-fog2 {
+  animation: fogDrift2 12s ease-in-out infinite;
+}
+
+.animate-fog-pulse {
+  animation: fogPulse 4s ease-in-out infinite;
+}
+
+/* Enhanced blend modes for luminous effects */
+.mix-blend-soft-light {
+  mix-blend-mode: soft-light;
+}
+
+.mix-blend-overlay {
+  mix-blend-mode: overlay;
+}
+
+.mix-blend-screen {
+  mix-blend-mode: screen;
+}
+
+.mix-blend-lighten {
+  mix-blend-mode: lighten;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1B2E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #60A5FA, #3B82F6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #3B82F6, #2563EB);
+}
+
+/* Glow card effects for dark theme */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #2563EB, #1E40AF, #2563EB);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+.glow-card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #60A5FA, #3B82F6, #2563EB, #60A5FA);
+  background-size: 400% 400%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  animation: gradientShift 3s ease infinite;
+}
+
+.glow-card:hover::after {
+  opacity: 0.3;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Smooth entrance animations */
+section {
+  scroll-margin-top: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Text glow effects */
+.text-glow {
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+}
+
+/* Button enhancements for dark theme */
+.btn-glow {
+  background: linear-gradient(45deg, #1E40AF, #2563EB);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Ambient lighting for sections */
+.section-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #3B82F6, transparent);
+  opacity: 0.3;
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #60A5FA;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .glow-card::after {
+    display: none;
+  }
+  
+  section {
+    scroll-margin-top: 60px;
+  }
+}
+
+/* Home fog animation */
+@keyframes homeFogDrift {
+  0%   { transform: translateX(-15%) scale(1); opacity: 0.3; }
+  50%  { transform: translateX(15%) scale(1.05); opacity: 0.4; }
+  100% { transform: translateX(-15%) scale(1); opacity: 0.3; }
+}
+
+.animate-homefog {
+  animation: homeFogDrift 14s ease-in-out forwards;
+}
+
+/* Add these animations to your existing index.css */
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes drawSignature {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Ensure the intro is on top of everything */
+.fixed {
+  position: fixed;
+}
+
+.z-\[9999\] {
+  z-index: 9999 !important;
+}
+
+/* SVG stroke animation */
+.signature-path {
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: drawSignature 3.5s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+}
+
+/* Pen tip animation */
+@keyframes movePen {
+  0% {
+    offset-distance: 0%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/* Fade up animation for text */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode base styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #0F0F1A;
+  color: #F1F5F9;
+}
+
+/* Dark mode utility classes */
+.dark .bg-white {
+  background-color: #1A1B2E !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #0F0F1A !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #1A1B2E !important;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-[#475569],
+.dark .text-[#64748B] {
+  color: #CBD5E1 !important;
+}
+
+.dark .text-[#0F172A] {
+  color: #F1F5F9 !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+.dark .shadow-lg,
+.dark .shadow-xl {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Card styles for dark mode */
+.dark .glow-card {
+  background-color: rgba(26, 27, 46, 0.8) !important;
+  border-color: #374151 !important;
+}
+
+.dark .glow-card:hover {
+  border-color: #3B82F6 !important;
+}
+
+/* Navigation for dark mode */
+.dark nav {
+  background-color: rgba(15, 15, 26, 0.9) !important;
+  border-color: #374151 !important;
+}
+
+.dark nav button,
+.dark nav a {
+  color: #CBD5E1 !important;
+}
+
+.dark nav button:hover,
+.dark nav a:hover {
+  background-color: #374151 !important;
+}
+
+/* Button styles for dark mode */
+.dark .btn-glow {
+  background: linear-gradient(45deg, #3B82F6, #2563EB) !important;
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: #1A1B2E !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3B82F6, #2563EB) !important;
+}
+
+/* Dark Mode Transitions */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Skills section specific dark mode */
+.dark #skills {
+  background: linear-gradient(to bottom right, #0F0F1A, #1A1B2E, #0F0F1A) !important;
+}
+
+/* Timeline section for dark mode */
+.dark #timeline {
+  background: linear-gradient(to bottom right, #0F0F1A, #1A1B2E, #0F0F1A) !important;
+}
+
+.dark #timeline .bg-white {
+  background-color: rgba(26, 27, 46, 0.8) !important;
+}
+
+/* Projects section for dark mode */
+.dark #projects .bg-white {
+  background-color: rgba(26, 27, 46, 0.8) !important;
+}
+
+.dark #projects .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+/* Certifications section for dark mode */
+.dark #certifications .bg-white {
+  background-color: rgba(26, 27, 46, 0.8) !important;
+}
+
+/* Contact section for dark mode */
+.dark #contact {
+  background-color: #0F0F1A !important;
+}
+
+.dark #contact .bg-white {
+  background-color: rgba(26, 27, 46, 0.8) !important;
+}
+
+/* Footer for dark mode */
+.dark footer {
+  background-color: rgba(15, 15, 26, 0.8) !important;
+  border-color: #374151 !important;
+  color: #94A3B8 !important;
+}
